@@ -21,6 +21,11 @@ export const CarInquiryModal = ({ car, isOpen, onClose, defaultType = 'vehicle',
             setErrorMsg('Please complete all contact details.');
             return;
         }
+        const phoneDigits = phone.replace(/\D/g, '');
+        if (!/^\+?[0-9\s\-().]+$/.test(phone) || phoneDigits.length < 7 || phoneDigits.length > 15) {
+            setErrorMsg('Please enter a valid telephone number (7–15 digits).');
+            return;
+        }
         setIsSubmitting(true);
         setErrorMsg('');
         try {
@@ -139,7 +144,7 @@ export const CarInquiryModal = ({ car, isOpen, onClose, defaultType = 'vehicle',
                   </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3 w-4 h-4 text-zinc-400"/>
-                    <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+44 7..." className="w-full bg-[#16181f] border border-zinc-800 rounded-lg pl-9 pr-3 py-2.5 text-sm text-white placeholder-zinc-400 focus:border-red-600 focus:outline-none"/>
+                    <input type="tel" required value={phone} minLength={7} pattern="^\+?[0-9\s\-().]{7,20}$" title="Enter a valid phone number, e.g. +44 7911 123456" onChange={(e) => setPhone(e.target.value)} placeholder="+44 7..." className="w-full bg-[#16181f] border border-zinc-800 rounded-lg pl-9 pr-3 py-2.5 text-sm text-white placeholder-zinc-400 focus:border-red-600 focus:outline-none"/>
                   </div>
                 </div>
               </div>

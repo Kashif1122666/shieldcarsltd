@@ -21,6 +21,11 @@ export const ContactPage = () => {
             setErrorMsg('Please fill in your name, email, and telephone number.');
             return;
         }
+        const phoneDigits = formData.phone.replace(/\D/g, '');
+        if (!/^\+?[0-9\s\-().]+$/.test(formData.phone) || phoneDigits.length < 7 || phoneDigits.length > 15) {
+            setErrorMsg('Please enter a valid telephone number (7–15 digits).');
+            return;
+        }
         setIsSubmitting(true);
         setErrorMsg('');
         try {
@@ -126,7 +131,7 @@ export const ContactPage = () => {
                     <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5">
                       Telephone Number *
                     </label>
-                    <input type="tel" required value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="+44 7911 123456" className="w-full bg-[#16181f] border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-400 focus:border-red-600 focus:outline-none"/>
+                    <input type="tel" required value={formData.phone} minLength={7} pattern="^\+?[0-9\s\-().]{7,20}$" title="Enter a valid phone number, e.g. +44 7911 123456" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="+44 7911 123456" className="w-full bg-[#16181f] border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-400 focus:border-red-600 focus:outline-none"/>
                   </div>
                 </div>
 

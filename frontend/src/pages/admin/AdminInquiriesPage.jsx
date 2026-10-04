@@ -69,7 +69,7 @@ export const AdminInquiriesPage = () => {
             { label: 'Closed', value: 'closed' },
         ].map((item) => (<button key={item.value} type="button" onClick={() => setStatusFilter(item.value)} className={`px-3 py-1.5 rounded-md font-semibold transition-all ${statusFilter === item.value
                 ? 'bg-zinc-800 text-white shadow-sm'
-                : 'text-zinc-400 hover:text-white'}`}>
+                : 'text-zinc-300 hover:text-white'}`}>
               {item.label}
             </button>))}
         </div>
@@ -100,7 +100,7 @@ export const AdminInquiriesPage = () => {
                         ? 'bg-amber-950/40 text-amber-400 border-amber-800/50'
                         : inq.status === 'appointment_booked'
                             ? 'bg-emerald-950/40 text-emerald-400 border-emerald-800/50'
-                            : 'bg-zinc-800 text-zinc-400 border-zinc-700'}`}>
+                            : 'bg-zinc-800 text-zinc-200 border-zinc-700'}`}>
                     <option value="new">New Lead</option>
                     <option value="contacted">Contacted</option>
                     <option value="appointment_booked">Appointment Booked</option>
@@ -140,10 +140,16 @@ export const AdminInquiriesPage = () => {
               {/* Contact Affordances Footer */}
               <div className="flex flex-wrap items-center justify-between gap-4 pt-2 text-xs">
                 <div className="flex flex-wrap items-center gap-4">
+                  {/* Email link removed along with nodemailer cleanup
                   <a href={`mailto:${inq.email}`} className="flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors">
                     <Mail className="w-3.5 h-3.5 text-red-500"/>
                     <span>{inq.email}</span>
                   </a>
+                  */}
+                  <span className="flex items-center gap-1.5 text-zinc-300">
+                    <Mail className="w-3.5 h-3.5 text-red-500"/>
+                    <span>{inq.email}</span>
+                  </span>
 
                   <a href={`tel:${inq.phone}`} className="flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors">
                     <Phone className="w-3.5 h-3.5 text-red-500"/>
@@ -156,11 +162,13 @@ export const AdminInquiriesPage = () => {
                     </div>)}
                 </div>
 
+                {/* Reply via Email button removed along with nodemailer cleanup
                 <div className="flex items-center gap-2">
                   <a href={`mailto:${inq.email}?subject=Shield Cars Ltd - Response to Inquiry regarding ${encodeURIComponent(inq.vehicleTitle || 'Vehicle')}`} className="px-3.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold text-xs transition-colors">
                     Reply via Email
                   </a>
                 </div>
+                */}
               </div>
             </div>))}
         </div>) : (<div className="p-12 text-center bg-[#12151a] rounded-xl border border-zinc-800 text-zinc-400">

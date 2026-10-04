@@ -1,7 +1,6 @@
 import express from 'express';
 import Inquiry from '../models/Inquiry.js';
 import protect from '../middleware/auth.js';
-import { sendInquiryNotification } from '../config/mailer.js';
 
 const router = express.Router();
 
@@ -11,11 +10,6 @@ router.post('/', async (req, res) => {
     const data = { ...req.body };
     if (!data.id) data.id = `inq-${Date.now().toString(36)}`;
     const inquiry = await Inquiry.create(data);
-
-    // Notify staff by email. This is intentionally not awaited so a slow or
-    // failing mail server never delays or breaks the customer's submission;
-    // the inquiry is already saved above.
-    sendInquiryNotification(inquiry.toJSON());
 
     res.status(201).json(inquiry);
   } catch (err) {

@@ -87,7 +87,7 @@ export const AdminLayout = () => {
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
-              <span>Frontend Prototype Ready</span>
+              <span>Live · System Online</span>
             </div>
           </div>
         </header>
