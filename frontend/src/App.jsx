@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FavoritesProvider } from './context/FavoritesContext';
 import { AuthProvider } from './context/AuthContext';
 import { ScrollToTop } from './components/common/ScrollToTop';
+import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { CarLoadingScreen } from './components/common/CarLoadingScreen';
 import { PublicLayout } from './components/layout/PublicLayout';
 import { AdminLayout } from './components/layout/AdminLayout';
@@ -53,7 +54,7 @@ export default function App() {
             <Route path="/admin/login" element={<AdminLoginPage />}/>
 
             {/* Admin Management Routes */}
-            <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
               <Route index element={<AdminDashboardPage />}/>
               <Route path="cars" element={<AdminInventoryPage />}/>
               <Route path="cars/new" element={<AdminAddCarPage />}/>

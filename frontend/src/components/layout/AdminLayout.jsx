@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Link, useNavigate, Outlet } from 'react-router-dom';
+import { NavLink, Link, useNavigate, Outlet, Navigate } from 'react-router-dom';
 import { ShieldLogo } from '../common/ShieldLogo';
 import { useAuth } from '../../context/AuthContext';
 import { LayoutDashboard, CarFront, PlusCircle, MessageSquare, ExternalLink, LogOut, Menu, X, } from 'lucide-react';
@@ -7,6 +7,9 @@ export const AdminLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { user, logout } = useAuth();
     const navigate = useNavigate();
+    if (!user) {
+        return <Navigate to="/admin/login" replace />;
+    }
     const handleLogout = () => {
         logout();
         navigate('/admin/login');

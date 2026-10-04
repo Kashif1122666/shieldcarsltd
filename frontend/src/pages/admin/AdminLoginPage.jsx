@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { ShieldLogo } from '../../components/common/ShieldLogo';
 import { useAuth } from '../../context/AuthContext';
 import { Lock, Mail, KeyRound, Info } from 'lucide-react';
 import { ButtonLoader } from '../../components/common/Skeletons';
 export const AdminLoginPage = () => {
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { login, user } = useAuth();
+    if (user) {
+        return <Navigate to="/admin" replace />;
+    }
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
