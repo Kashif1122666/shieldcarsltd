@@ -1,0 +1,16 @@
+{
+  "frameworks": [
+    {
+      "name": "vite",
+      "src": "frontend",
+      "build": "npm run build",
+      "output": "dist"
+    },
+    {
+      "name": "next",
+      "src": "api",
+      "runtime": "nodejs20"
+    }
+  ],
+  "rootFramework": "vite"
+}
