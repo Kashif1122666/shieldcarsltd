@@ -16,7 +16,6 @@
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "react-router-dom": "^7.18.4",
-    "shieldcars-backend": "file:../backend",
     "vite": "^8.3.0"
   },
   "devDependencies": {
